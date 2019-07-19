@@ -10,6 +10,10 @@ int**provisionar_matriz(int);
 void liberar_matriz(int**,int);
 int menorFila(int**,int,int);
 bool comprobar_num_t(int);
+bool testMenor(int**,int,int,int);
+int menorFila(int**,int,int);
+bool testMayor(int**,int,int,int);
+int mayorColumna(int**,int,int);
 int main(){
 	int opcion;
 	//el programa continua mientras el usuario no ingrese la opcion de salir
@@ -79,17 +83,20 @@ void menu(){
 }
 
 void trabajar_matriz(int**matriz,int size){
+	int counter=0;
 	//1.muestra la matriz mediante una funcion
 	mostrar_matriz(matriz,size);
 	//buscamos los numeros silla
 	//recorremos la matriz
 	for(int i=0;i<size;i++){
 		for(int j=0;j<size;j++){
-			
+			if(testMenor(matriz,i,j,size)&&testMayor(matriz,i,j,size)){
+				cout<<"numero silla en pos["<<i<<"]"<<"["<<j<<"]"<<endl;
+				counter++;
+			}
 		}
 	}
-	
-		
+	cout<<"\ntotal numeros silla: "<<counter<<endl;
 }
 
 void mostrar_matriz(int**matriz,int size){
@@ -177,4 +184,20 @@ bool comprobar_num_t(int t){
 	
 }
 	
+bool testMayor(int**matriz,int i,int j,int size){
+	int mayor=matriz[i][j];//current number
+	//test in row
+	return mayor==mayorColumna(matriz,j,size);
+}
 
+
+
+int mayorColumna(int**matriz,int columna,int size){//devuelve el menor de la fila
+	int mayor=matriz[0][columna];
+	for(int i=0;i<size-1;i++){
+		if(matriz[i+1][columna]>=mayor){
+			mayor=matriz[i+1][columna];
+		}
+	}
+	return mayor;
+}
