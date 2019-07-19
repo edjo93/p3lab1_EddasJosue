@@ -8,6 +8,7 @@ void mostrar_matriz(int**,int);
 void leer_matriz(int**,int);
 int**provisionar_matriz(int);
 void liberar_matriz(int**,int);
+int menorFila(int**,int,int);
 int main(){
 	int opcion;
 	//el programa continua mientras el usuario no ingrese la opcion de salir
@@ -49,7 +50,10 @@ void menu(){
 }
 void trabajar_matriz(int**matriz,int size){
 	//1.muestra la matriz mediante una funcion
-	mostrar_matriz(matriz,size);	
+	mostrar_matriz(matriz,size);
+	//buscamos los numeros silla
+	
+		
 }
 
 void mostrar_matriz(int**matriz,int size){
@@ -63,6 +67,8 @@ void mostrar_matriz(int**matriz,int size){
 	cout<<endl;
 }
 
+
+
 void leer_matriz(int**matriz,int size){
 	srand(time(0));
 	for(int i=0;i<size;i++){
@@ -75,7 +81,7 @@ void leer_matriz(int**matriz,int size){
 int** provisionar_matriz(int size){
 	int**matriz=NULL;
 
-	matriz=new int*[size];//reservando memoria lara las filas
+	matriz=new int*[size];//reservando memoria para las filas
 
 	for(int i=0;i<size;i++){
 		matriz[i]=new int[size];//reservando memoria para las columnas
@@ -99,4 +105,23 @@ void liberar_matriz(int** matriz,int size){
 		matriz=NULL;
 	}
 }
+
+bool testMenor(int**matriz,int i,int j,int size){
+	int menor=matriz[i][j];//current number
+	//test in row
+	return menor==menorFila(matriz,i,size);
+}
+
+
+
+int menorFila(int**matriz,int fila,int size){//devuelve el menor de la fila
+	int menor=matriz[fila][0];
+	for(int j=0;j<size-1;j++){
+		if(matriz[fila][j+1]<=menor){
+			menor=matriz[fila][j+1];
+		}
+	}
+	return menor;
+}
+
 
