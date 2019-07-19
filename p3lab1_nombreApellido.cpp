@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 void menu();//funcion que muestra un menu en pantalla
+void trabajar_matriz(int**,int,int);
 int main(){
 	int opcion;
 	//el programa continua mientras el usuario no ingrese la opcion de salir
@@ -10,6 +11,13 @@ int main(){
 		
 		switch(opcion){
 			case 1:
+				{
+					int filas=5;
+					int columnas=5;
+					//matriz 5*5
+					int matriz[filas][columnas];
+					
+				}
 				
 				break;
 			case 2:
@@ -32,3 +40,8 @@ int main(){
 void menu(){
 	cout<<"\nopciones\n1.puntos de silla\n2.numeros triangulares\n3.permutaciones\n4.salir\n?:"<<endl;	
 }
+void trabajar_matriz(int**matriz,int filas,int columnas){
+	
+}
+
+
