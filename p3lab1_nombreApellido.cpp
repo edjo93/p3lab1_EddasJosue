@@ -9,6 +9,7 @@ void leer_matriz(int**,int);
 int**provisionar_matriz(int);
 void liberar_matriz(int**,int);
 int menorFila(int**,int,int);
+bool comprobar_num_t(int);
 int main(){
 	int opcion;
 	//el programa continua mientras el usuario no ingrese la opcion de salir
@@ -29,7 +30,34 @@ int main(){
 				
 				break;
 			case 2:
+					{
+				int num;
+				cout<<"\ningrese un numero [>=1] para comprobar si es un numero triangular: ";
+				cin>>num;
 				
+				//validacion de num
+				while(num<1){
+					cout<<"\nerror! ingrese un numero [>=1] para comprobar si es un numero triangular: ";
+					cin>>num;
+				}
+				
+				
+				if(comprobar_num_t(num)){
+					cout<<"\nel numero "<<num<<" es un numero tringular";
+				}else{
+					cout<<"\nel numero "<<num<<" no es un numero tringular"<<endl;
+					
+					//encontrando numero triangular previo
+					int previo;
+					
+					for(int i=1;i<num;i++){
+						if(comprobar_num_t(i)){
+							previo=i;
+						}		
+					}
+					cout<<"\nel numero tringular previo a "<<num<<" es: "<<previo<<endl;
+				}
+					}
 				break;
 			case 3:
 				
@@ -45,13 +73,21 @@ int main(){
 	}while(opcion!=4);
 	return 0;
 }
+
 void menu(){
 	cout<<"\nopciones\n1.puntos de silla\n2.numeros triangulares\n3.permutaciones\n4.salir\n?:"<<endl;	
 }
+
 void trabajar_matriz(int**matriz,int size){
 	//1.muestra la matriz mediante una funcion
 	mostrar_matriz(matriz,size);
 	//buscamos los numeros silla
+	//recorremos la matriz
+	for(int i=0;i<size;i++){
+		for(int j=0;j<size;j++){
+			
+		}
+	}
 	
 		
 }
@@ -124,4 +160,21 @@ int menorFila(int**matriz,int fila,int size){//devuelve el menor de la fila
 	return menor;
 }
 
+bool comprobar_num_t(int t){
+	int sum=0;
+	// comprobacion segun definicion numero triangular
+	for(int i=1;i<=t;i++){
+		//salida temprana del ciclo
+		sum+=i;
+		if(sum>=t){
+			break;
+		}
+	}
+	
+	//resultado
+	
+	return sum==t;
+	
+}
+	
 
