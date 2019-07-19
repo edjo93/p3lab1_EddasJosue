@@ -7,6 +7,7 @@ void trabajar_matriz(int**,int);
 void mostrar_matriz(int**,int);
 void leer_matriz(int**,int);
 int**provisionar_matriz(int);
+void liberar_matriz(int**,int);
 int main(){
 	int opcion;
 	//el programa continua mientras el usuario no ingrese la opcion de salir
@@ -19,8 +20,10 @@ int main(){
 				{
 					int size=5;
 					int** matriz=provisionar_matriz(size);//generacion de una matriz 5*5
-					leer_matriz(matriz,size);
+					leer_matriz(matriz,size);//llenamos esa matriz con numeros aleatorios
 					trabajar_matriz(matriz,size);
+					liberar_matriz(matriz,size);//liberamos la matriz
+					
 				}
 				
 				break;
@@ -79,5 +82,21 @@ int** provisionar_matriz(int size){
 	}
 
 	return matriz;
+}
+void liberar_matriz(int** matriz,int size){
+	for(int i=0;i<size;i++){
+		if(matriz[i]!=NULL){
+			delete[] matriz[i];
+			matriz[i]=NULL;
+
+		}
+	}	
+	
+
+
+	if(matriz!=NULL){
+		delete[] matriz;
+		matriz=NULL;
+	}
 }
 
